@@ -15,4 +15,5 @@ target 'DoricWebSocket' do
   # Pods for DoricWebSocket
   pod 'DoricCore', "#{version}"
   pod 'DoricDevkit', "#{version}"
+  pod 'SocketRocket'
 end

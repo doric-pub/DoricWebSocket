@@ -1,43 +1,39 @@
-import { Panel, Group, vlayout, layoutConfig, Gravity, text, Text, Color, navbar } from "doric";
+import { Group, Panel, text, gravity, Color, LayoutSpec, vlayout, scroller, layoutConfig } from 'doric'
+import { WebSocket } from './websocket'
 
 @Entry
-class DoricWebSocket extends Panel {
-    onShow() {
-        navbar(context).setTitle("DoricWebSocket")
-    }
+class WebSocketDemo extends Panel {
     build(rootView: Group): void {
-        let number: Text
-        let count = 0
-        vlayout([
-            number = text({
-                textSize: 40,
-                text: '0',
-            }),
+        let webSocket = new WebSocket(context)
+
+        scroller(vlayout([
             text({
-                text: "Click to count",
-                textSize: 20,
-                backgroundColor: Color.parse('#70a1ff'),
+                text: "WebSocket Demo",
+                layoutConfig: layoutConfig().configWidth(LayoutSpec.MOST),
+                textSize: 30,
                 textColor: Color.WHITE,
-                onClick: () => {
-                    number.text = `${++count}`
-                },
-                layoutConfig: layoutConfig().just(),
-                width: 200,
+                backgroundColor: Color.parse("#7bed9f"),
+                textAlignment: gravity().center(),
                 height: 50,
             }),
-        ])
-            .apply({
-                layoutConfig: layoutConfig().just().configAlignment(Gravity.Center),
+            text({
+                text: 'connect',
                 width: 200,
-                height: 200,
-                space: 20,
-                border: {
-                    color: Color.BLUE,
-                    width: 1,
-                },
-                gravity: Gravity.Center,
-            })
-            .in(rootView)
+                height: 50,
+                backgroundColor: Color.parse("#70a1ff"),
+                textSize: 30,
+                textColor: Color.WHITE,
+                layoutConfig: layoutConfig().just(),
+                onClick: () => {
+                    webSocket.connect("ws://10.111.210.113:3080/ws")
+                }
+            }),
+        ]).apply({
+            layoutConfig: layoutConfig().most().configHeight(LayoutSpec.FIT),
+            gravity: gravity().center(),
+            space: 10,
+        })).apply({
+            layoutConfig: layoutConfig().most(),
+        }).in(rootView)
     }
-
 }

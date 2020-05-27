@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		95EDDB7EAB47A65821DBC7EC /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB59FE64F1D814FD13C71BB2 /* Pods_Example.framework */; };
+		1FEA5E5F341FAC8DC7DA0B57 /* Pods_DoricWebSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A894E7134A7F1D5EFDE4E5D3 /* Pods_DoricWebSocket.framework */; };
 		E2B059BF23C452BB007555C7 /* src in Resources */ = {isa = PBXBuildFile; fileRef = E2B059BE23C452BB007555C7 /* src */; };
 		E2F64CEF2399359C0006BD9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F64CEE2399359C0006BD9A /* AppDelegate.m */; };
 		E2F64CF22399359C0006BD9A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F64CF12399359C0006BD9A /* SceneDelegate.m */; };
@@ -18,8 +18,9 @@
 
 /* Begin PBXFileReference section */
 		197D29BBE572343DDD72F8A6 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		58F2C1F81C654A14D06DA694 /* Pods-DoricWebSocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoricWebSocket.debug.xcconfig"; path = "Target Support Files/Pods-DoricWebSocket/Pods-DoricWebSocket.debug.xcconfig"; sourceTree = "<group>"; };
 		5D47A9D4EA2836D57373FDF6 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		AB59FE64F1D814FD13C71BB2 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A894E7134A7F1D5EFDE4E5D3 /* Pods_DoricWebSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoricWebSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B059BE23C452BB007555C7 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../bundle/src; sourceTree = "<group>"; };
 		E2F64CEA2399359C0006BD9A /* DoricWebSocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoricWebSocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F64CED2399359C0006BD9A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -30,6 +31,7 @@
 		E2F64CFC2399359E0006BD9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2F64CFE2399359E0006BD9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2F64CFF2399359E0006BD9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EFE29A870DF3976410381422 /* Pods-DoricWebSocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoricWebSocket.release.xcconfig"; path = "Target Support Files/Pods-DoricWebSocket/Pods-DoricWebSocket.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95EDDB7EAB47A65821DBC7EC /* Pods_Example.framework in Frameworks */,
+				1FEA5E5F341FAC8DC7DA0B57 /* Pods_DoricWebSocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +51,8 @@
 			children = (
 				197D29BBE572343DDD72F8A6 /* Pods-Example.debug.xcconfig */,
 				5D47A9D4EA2836D57373FDF6 /* Pods-Example.release.xcconfig */,
+				58F2C1F81C654A14D06DA694 /* Pods-DoricWebSocket.debug.xcconfig */,
+				EFE29A870DF3976410381422 /* Pods-DoricWebSocket.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -90,7 +94,7 @@
 		F654B22175F1FDDC9AE817FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AB59FE64F1D814FD13C71BB2 /* Pods_Example.framework */,
+				A894E7134A7F1D5EFDE4E5D3 /* Pods_DoricWebSocket.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -132,7 +136,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E2F64CE52399359C0006BD9A /* Build configuration list for PBXProject "Example" */;
+			buildConfigurationList = E2F64CE52399359C0006BD9A /* Build configuration list for PBXProject "DoricWebSocket" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -170,15 +174,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-DoricWebSocket/Pods-DoricWebSocket-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-DoricWebSocket/Pods-DoricWebSocket-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoricWebSocket/Pods-DoricWebSocket-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8E2E7D30FF8381E7791EA41B /* [CP] Check Pods Manifest.lock */ = {
@@ -196,7 +200,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Example-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-DoricWebSocket-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -360,7 +364,7 @@
 		};
 		E2F64D042399359E0006BD9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 197D29BBE572343DDD72F8A6 /* Pods-Example.debug.xcconfig */;
+			baseConfigurationReference = 58F2C1F81C654A14D06DA694 /* Pods-DoricWebSocket.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -379,7 +383,7 @@
 		};
 		E2F64D052399359E0006BD9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D47A9D4EA2836D57373FDF6 /* Pods-Example.release.xcconfig */;
+			baseConfigurationReference = EFE29A870DF3976410381422 /* Pods-DoricWebSocket.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -399,7 +403,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2F64CE52399359C0006BD9A /* Build configuration list for PBXProject "Example" */ = {
+		E2F64CE52399359C0006BD9A /* Build configuration list for PBXProject "DoricWebSocket" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2F64D012399359E0006BD9A /* Debug */,
