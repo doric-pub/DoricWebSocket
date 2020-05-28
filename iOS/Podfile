@@ -13,7 +13,6 @@ target 'DoricWebSocket' do
   use_frameworks!
 
   # Pods for DoricWebSocket
-  pod 'DoricCore', "#{version}"
   pod 'DoricDevkit', "#{version}"
-  pod 'SocketRocket'
+  pod 'DoricWebSocket', :path => '../'
 end
