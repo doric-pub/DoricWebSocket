@@ -39,7 +39,10 @@ class WebSocketDemo extends Panel {
         webSocket.onerror = () => {
             modal(context).toast('onerror')
         }
-        webSocket.onmessage = () => {
+        webSocket.onmessage = (arrayBuffer: ArrayBuffer) => {
+            let accessMessage = new AccessMessage()
+            accessMessage.decode(arrayBuffer)
+            loge(accessMessage)
             modal(context).toast('onmessage')
         }
 

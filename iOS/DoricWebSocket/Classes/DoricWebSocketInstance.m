@@ -57,8 +57,19 @@
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
+    NSData *data = message;
+    NSUInteger length = [data length];
+    Byte bytes[length];
+    memcpy(bytes, [data bytes], length);
+    NSMutableString *result = [NSMutableString stringWithString:@""];
+    for (int i = 0; i < length; i++) {
+        int byte = bytes[i];
+        NSString *each = [NSString stringWithFormat:@"%d", byte];
+        [result appendString:each];
+        [result appendString:@","];
+    }
     DoricLog(@"didReceiveMessage");
-    [self.onmessagePromise resolve:nil];
+    [self.onmessagePromise resolve:result];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {

@@ -59,8 +59,16 @@ export class WebSocket {
 
     public onmessage?: Function
 
-    private _onmessage: Function = () => {
-        if (this.onmessage) this.onmessage()
+    private _onmessage: Function = (message: String) => {
+        let strings = message.split(',')
+        let length = strings.length - 1
+
+        let arrayBuffer = new ArrayBuffer(length)
+        let dataView = new DataView(arrayBuffer)
+        for (let index = 0; index < length; index++) {
+            dataView.setUint8(index, parseInt(strings[index]))
+        }
+        if (this.onmessage) this.onmessage(arrayBuffer)
     }
 
     private context: BridgeContext
