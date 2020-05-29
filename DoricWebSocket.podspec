@@ -40,7 +40,7 @@ A websocket extension built for doric.
 	  'VALID_ARCHS' =>  valid_archs.join(' '),
 	}
   s.public_header_files = 'iOS/DoricWebSocket/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+#  s.frameworks = 'Foundation'
   s.dependency 'DoricCore'
   s.dependency 'SocketRocket'
 end

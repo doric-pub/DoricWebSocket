@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <DoricCore/Doric.h>
+#import <DoricWebSocket/DoricWebSocketLibrary.h>
 
 @interface AppDelegate ()
 @end
@@ -15,6 +16,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    DoricWebSocketLibrary* library = [[DoricWebSocketLibrary alloc] init];
+    [DoricRegistry register:library];
     return YES;
 }
 

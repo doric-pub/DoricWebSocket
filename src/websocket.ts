@@ -13,37 +13,84 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { BridgeContext } from "doric"
+import { BridgeContext, modal } from "doric"
 
 function websocket(context: BridgeContext) {
     return {
-        connect: (url: String) => {
-            return context.callNative('websocket', 'connect', { url: url })
-        }
+        create: (onopen: string, onclose: string, onerror: string, onmessage: string) => {
+            return context.callNative('websocket', 'create', {
+                onopen: onopen,
+                onclose: onclose,
+                onerror: onerror,
+                onmessage: onmessage
+            }) as Promise<Number>
+        },
+        open: (identifier: Number, url: String) => {
+            return context.callNative('websocket', 'open', { identifier: identifier, url: url })
+        },
+        close: (identifier: Number) => {
+            return context.callNative('websocket', 'close', { identifier: identifier }) as Promise<Boolean>
+        },
     }
 }
 
 export class WebSocket {
 
-    onopen?: Function
+    public onopen?: Function
 
-    onclose?: Function
+    private _onopen: Function = () => {
+        if (this.onopen) this.onopen()
+    }
 
-    onerror?: Function
+    public onerror?: Function
 
-    onmessage?: Function
+    private _onerror: Function = () => {
+        if (this.onerror) this.onerror()
+    }
+
+    public onclose?: Function
+
+    private _onclose: Function = () => {
+        if (this.onclose) this.onclose()
+    }
+
+    public onmessage?: Function
+
+    private _onmessage: Function = () => {
+        if (this.onmessage) this.onmessage()
+    }
 
     private context: BridgeContext
 
+    private identifier: Number = -1
+
     constructor(context: BridgeContext) {
         this.context = context
+
+        let onopenFunction = context.function2Id(this._onopen)
+        let oncloseFunction = context.function2Id(this._onclose)
+        let onerrorFunction = context.function2Id(this._onerror)
+        let onmessageFunction = context.function2Id(this._onmessage)
+
+        let create = async () => {
+            return await websocket(this.context).create(onopenFunction, oncloseFunction, onerrorFunction, onmessageFunction)
+        }
+        create().then((identifier: Number) => {
+            this.identifier = identifier
+        }).catch(() => {})
     }
 
-    public connect(url: String) {
-        websocket(this.context).connect(url)
+    public open(url: String) {
+        let open = async () => {
+            return await websocket(this.context).open(this.identifier, url)
+        }
+        open()
     }
 
-    public disconnect() {
-        // websocket(context).connect(url) 
+    public close() {
+        let close = async () => {
+            return await websocket(this.context).close(this.identifier)
+        }
+        close().then((result: Boolean) => {modal(this.context).toast(String(result))}).catch(() => {})
     }
 }
