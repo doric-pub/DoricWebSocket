@@ -69,6 +69,24 @@
     [websocket open:url];
 }
 
+- (void)send:(NSDictionary *)dic withPromise:(DoricPromise *)promise {
+    NSUInteger identifier = [dic[@"identifier"] intValue];
+    NSString *dataString = dic[@"data"];
+    NSArray *strings = [dataString componentsSeparatedByString:@","];
+    NSUInteger length = strings.count - 1;
+    Byte bytes[length];
+    for (int i = 0; i < length; i++) {
+        NSString *str = [strings objectAtIndex:i];
+        int byte = [str intValue];
+        bytes[i] = byte;
+    }
+    
+    NSData *data = [[NSData alloc] initWithBytes:bytes length:length];
+    NSString *key = [NSString stringWithFormat:@"%lu", (unsigned long)identifier];
+    DoricWebSocketInstance *websocket = [self.websocketDic objectForKey:key];
+    [websocket send:data];
+}
+
 - (void)close:(NSDictionary *)dic withPromise:(DoricPromise *)promise {
     NSUInteger identifier = [dic[@"identifier"] intValue];
     NSString *key = [NSString stringWithFormat:@"%lu", (unsigned long)identifier];

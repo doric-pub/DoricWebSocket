@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { BridgeContext, modal } from "doric"
+import { BridgeContext, modal, loge } from "doric"
 
 function websocket(context: BridgeContext) {
     return {
@@ -27,6 +27,9 @@ function websocket(context: BridgeContext) {
         },
         open: (identifier: Number, url: String) => {
             return context.callNative('websocket', 'open', { identifier: identifier, url: url })
+        },
+        send: (identifier: Number, data: String) => {
+            return context.callNative('websocket', 'send', { identifier: identifier, data: data })
         },
         close: (identifier: Number) => {
             return context.callNative('websocket', 'close', { identifier: identifier }) as Promise<Boolean>
@@ -85,6 +88,22 @@ export class WebSocket {
             return await websocket(this.context).open(this.identifier, url)
         }
         open()
+    }
+
+    public send(arrayBuffer: ArrayBuffer) {
+        let result: String = ""
+        let array = new Uint8Array(arrayBuffer)
+        loge(array.byteLength)
+        array.forEach(function (byte: number) {
+            result += `${byte},`
+        })
+        let send = async () => {
+            return await websocket(this.context).send(
+                this.identifier,
+                result
+            )
+        }
+        send()
     }
 
     public close() {

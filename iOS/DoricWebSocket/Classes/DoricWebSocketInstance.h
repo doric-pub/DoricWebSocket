@@ -30,6 +30,8 @@
 
 - (void)open:(NSString *)url;
 
+- (void)send:(NSData *)data;
+
 - (void)close;
 
 @end

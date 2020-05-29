@@ -10,11 +10,13 @@
     },
     "license": "Apache-2.0",
     "dependencies": {
+        "@types/varint": "^5.0.0",
         "doric": "0.4.27",
         "reflect-metadata": "^0.1.13",
         "rollup": "^2.10.9",
         "tslib": "^2.0.0",
-        "typescript": "^3.9.3"
+        "typescript": "^3.9.3",
+        "varint": "^5.0.0"
     },
     "devDependencies": {
         "@rollup/plugin-buble": "^0.21.3",

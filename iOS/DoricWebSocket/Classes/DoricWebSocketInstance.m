@@ -37,6 +37,10 @@
     [_srWebSocket open];
 }
 
+- (void)send:(NSData *)data {
+    [_srWebSocket send:data];
+}
+
 - (void)close {
     [_srWebSocket closeWithCode:1006 reason:@"user triggered close"];
 }
