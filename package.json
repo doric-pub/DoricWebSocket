@@ -11,9 +11,9 @@
     "license": "Apache-2.0",
     "dependencies": {
         "@types/varint": "^5.0.0",
-        "doric": "0.4.27",
+        "doric": "0.4.28",
         "reflect-metadata": "^0.1.13",
-        "rollup": "^2.10.9",
+        "rollup": "^2.11.2",
         "tslib": "^2.0.0",
         "typescript": "^3.9.3",
         "varint": "^5.0.0"
@@ -24,6 +24,6 @@
         "@rollup/plugin-image": "^2.0.5",
         "@rollup/plugin-json": "^4.0.3",
         "@rollup/plugin-node-resolve": "^8.0.0",
-        "minimist": ">=0.2.1"
+        "minimist": "1.2.5"
     }
 }
