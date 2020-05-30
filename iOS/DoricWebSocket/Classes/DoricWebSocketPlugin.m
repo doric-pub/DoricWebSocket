@@ -93,6 +93,17 @@
     DoricWebSocketInstance *websocket = [self.websocketDic objectForKey:key];
     [websocket close];
     
+    if (websocket != nil) {
+        [promise resolve:@(YES)];
+    } else {
+        [promise reject:@(NO)];
+    }
+}
+
+- (void)destroy:(NSDictionary *)dic withPromise:(DoricPromise *)promise {
+    NSUInteger identifier = [dic[@"identifier"] intValue];
+    NSString *key = [NSString stringWithFormat:@"%lu", (unsigned long)identifier];
+    DoricWebSocketInstance *websocket = [self.websocketDic objectForKey:key];
     [self.websocketDic removeObjectForKey:key];
     
     if (websocket != nil) {

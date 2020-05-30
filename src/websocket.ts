@@ -34,6 +34,9 @@ function websocket(context: BridgeContext) {
         close: (identifier: Number) => {
             return context.callNative('websocket', 'close', { identifier: identifier }) as Promise<Boolean>
         },
+        destroy: (identifier: Number) => {
+            return context.callNative('websocket', 'destroy', { identifier: identifier }) as Promise<Boolean>
+        },
     }
 }
 
@@ -119,5 +122,12 @@ export class WebSocket {
             return await websocket(this.context).close(this.identifier)
         }
         close().then((result: Boolean) => {modal(this.context).toast(String(result))}).catch(() => {})
+    }
+
+    public destroy() {
+        let destroy = async () => {
+            return await websocket(this.context).destroy(this.identifier)
+        }
+        destroy().then((result: Boolean) => {modal(this.context).toast(String(result))}).catch(() => {})
     }
 }
