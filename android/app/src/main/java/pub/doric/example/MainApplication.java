@@ -4,7 +4,7 @@ import android.app.Application;
 
 import pub.doric.Doric;
 import pub.doric.DoricRegistry;
-import pub.doric.extension.DoricWebSocketLibrary;
+import pub.doric.extension.WebSocketLibrary;
 
 /**
  * @Description: pub.doric.example
@@ -16,6 +16,6 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Doric.init(this);
-        DoricRegistry.register(new DoricWebSocketLibrary());
+        DoricRegistry.register(new WebSocketLibrary());
     }
 }
