@@ -6,6 +6,7 @@ import com.github.pengfeizhou.jscore.JavaValue;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import okio.ByteString;
 import pub.doric.DoricContext;
 import pub.doric.extension.bridge.DoricMethod;
 import pub.doric.extension.bridge.DoricPlugin;
@@ -81,6 +82,20 @@ public class WebSocketPlugin extends DoricJavaPlugin {
         } else {
             promise.resolve(new JavaValue(false));
         }
+    }
+
+    @DoricMethod
+    public void send(JSObject object, DoricPromise promise) {
+        int identifier = object.getProperty("identifier").asNumber().toInt();
+        String data = object.getProperty("data").asString().value();
+        String[] datas = data.split(",");
+        byte[] bytes = new byte[datas.length];
+        for (int i = 0; i < datas.length; i++) {
+            bytes[i] = (byte) Integer.parseInt(datas[i]);
+        }
+
+        WebSocketInstance webSocket = webSocketInstances.get(identifier);
+        webSocket.send(ByteString.of(bytes));
     }
 
     @Override

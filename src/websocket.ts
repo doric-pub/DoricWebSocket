@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { BridgeContext, modal, loge } from "doric"
+import { BridgeContext, modal, loge, log } from "doric"
 
 function websocket(context: BridgeContext) {
     return {
@@ -63,6 +63,7 @@ export class WebSocket {
     public onmessage?: Function
 
     private _onmessage: Function = (message: String) => {
+        log("_onmessage : "+message)
         let strings = message.split(',')
         let length = strings.length - 1
 
@@ -102,6 +103,7 @@ export class WebSocket {
     }
 
     public send(arrayBuffer: ArrayBuffer) {
+        log("send")
         let result: String = ""
         let array = new Uint8Array(arrayBuffer)
         loge(array.byteLength)

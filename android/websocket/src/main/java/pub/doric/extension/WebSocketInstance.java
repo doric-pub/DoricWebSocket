@@ -1,5 +1,9 @@
 package pub.doric.extension;
 
+import android.util.Log;
+
+import com.github.pengfeizhou.jscore.JavaValue;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -12,13 +16,12 @@ import pub.doric.extension.bridge.DoricPromise;
 import pub.doric.utils.DoricLog;
 
 public class WebSocketInstance {
-    private OkHttpClient okHttpClient;
-    private WebSocket mWebSocket;
-
     public DoricPromise onopenPromise;
     public DoricPromise onclosePromise;
     public DoricPromise onerrorPromise;
     public DoricPromise onmessagePromise;
+    private OkHttpClient okHttpClient;
+    private WebSocket mWebSocket;
 
     public WebSocketInstance() {
         okHttpClient = new OkHttpClient.Builder()
@@ -45,16 +48,26 @@ public class WebSocketInstance {
             @Override
             public void onMessage(WebSocket webSocket, String text) {
                 super.onMessage(webSocket, text);
+                DoricLog.d("onMessage string " + text);
             }
 
             @Override
             public void onMessage(WebSocket webSocket, ByteString bytes) {
                 super.onMessage(webSocket, bytes);
+                DoricLog.d("onMessage ByteString " + bytes.utf8());
+                byte[] b = bytes.toByteArray();
+                StringBuffer stringBuffer = new StringBuffer();
+                for (byte temp : b) {
+                    stringBuffer.append(temp).append(",");
+                }
+                DoricLog.d("onMessage ByteString sss" + stringBuffer.toString());
+                onmessagePromise.resolve(new JavaValue(stringBuffer.toString()));
             }
 
             @Override
             public void onClosing(WebSocket webSocket, int code, String reason) {
                 super.onClosing(webSocket, code, reason);
+                DoricLog.d("onClosing");
             }
 
             @Override
@@ -69,7 +82,7 @@ public class WebSocketInstance {
             public void onFailure(WebSocket webSocket, Throwable t, Response response) {
                 super.onFailure(webSocket, t, response);
 
-                DoricLog.d("onFailure");
+                DoricLog.d("onFailure " + t.getMessage());
                 onerrorPromise.resolve();
             }
         });
