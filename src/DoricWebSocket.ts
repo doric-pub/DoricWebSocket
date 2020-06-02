@@ -1,4 +1,4 @@
-import { Group, Panel, text, gravity, Color, LayoutSpec, vlayout, scroller, layoutConfig, modal, loge } from 'doric'
+import { Group, Panel, text, gravity, Color, LayoutSpec, vlayout, scroller, layoutConfig, modal, loge, hlayout, input, Input, log } from 'doric'
 import { WebSocket } from './websocket'
 import AccessMessage from './mercury/AccessMessage'
 import Constant from './mercury/Constant'
@@ -9,7 +9,7 @@ import DataUtil from './mercury/DataUtil'
 
 @Entry
 class WebSocketDemo extends Panel {
-
+    private input?: Input
     private webSocket?: WebSocket
     build(rootView: Group): void {
         scroller(vlayout([
@@ -104,6 +104,51 @@ class WebSocketDemo extends Panel {
                     this.webSocket?.destroy()
                 }
             }),
+
+            hlayout([
+                text({
+                    text: 'send',
+                    width: 200,
+                    height: 50,
+                    backgroundColor: Color.parse("#70a1ff"),
+                    textSize: 30,
+                    textColor: Color.WHITE,
+                    layoutConfig: layoutConfig().just(),
+                    onClick: () => {
+                        let promise = this.input?.getText(context);
+                        promise?.then(text => {
+                            log(text)
+                            var buf = new ArrayBuffer(text.length * 2);
+                            var bufView = new Uint8Array(buf);
+                            for (var i = 0, strLen = text.length; i < strLen; i++) {
+                                bufView[i] = text.charCodeAt(i);
+                                log("text :"+text.charCodeAt(i))
+                            }
+                            this.webSocket?.send(buf)
+                        })
+                    }
+                }),
+                this.input = input({
+                    width: 200,
+                    height: 50,
+                    textSize: 15,
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
+                    },
+                    hintText: "input",
+                    hintTextColor: Color.BLACK,
+                }),
+
+            ], {
+                width: Environment.screenWidth,
+                height: 50,
+                gravity: gravity().center()
+            }),
+
+
         ]).apply({
             layoutConfig: layoutConfig().most().configHeight(LayoutSpec.FIT),
             gravity: gravity().center(),
