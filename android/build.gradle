@@ -1,52 +1,46 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+import groovy.json.JsonSlurper
+
+def model = new JsonSlurper().parse(new File(project.getProjectDir().parent + File.separator + "package.json"))
+def doricSDKVersion = model.dependencies.doric.replace("^", "").replace(">=","")
+
+println("Doric Version:" + doricSDKVersion)
 
 buildscript {
     repositories {
+        mavenCentral()
         google()
         jcenter()
-
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:3.5.3'
     }
 }
 
-allprojects {
+rootProject.allprojects {
     repositories {
+        mavenCentral()
         google()
         jcenter()
-        maven { url 'https://jitpack.io' }
-    }
-    def needReplaceLocal = true
-    gradle.startParameter.taskNames.each {
-        if (it.contains('uploadArchives')) {
-            needReplaceLocal = false
-        }
-    }
-    if (needReplaceLocal) {
-        configurations.all {
-            resolutionStrategy {
-                dependencySubstitution {
-                    substitute module('pub.doric.extension:websocket') with project(":websocket")
-                }
-            }
-        }
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+
+    sourceSets {
+        main.assets.srcDirs += "../dist"
+    }
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
 }
 
-Properties properties = new Properties()
-properties.load(project.rootProject.file('version.properties').newDataInputStream())
-ext {
-    Version = properties.version
-}
-
-task publisMedia dependsOn(":websocket:uploadArchives") {
-    println "websocket published"
+dependencies {
+    api "pub.doric:core:$doricSDKVersion"
 }

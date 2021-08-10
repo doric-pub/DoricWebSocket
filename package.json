@@ -1,29 +1,31 @@
 {
-    "name": "doric-websocket",
-    "version": "0.1.0",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "tsc -p .&& rollup -c",
-        "dev": "tsc -w -p . & rollup -c -w",
-        "clean": "rm -rf build && rm -rf bundle"
-    },
-    "license": "Apache-2.0",
-    "dependencies": {
-        "@types/varint": "^5.0.0",
-        "doric": "0.4.28",
-        "reflect-metadata": "^0.1.13",
-        "rollup": "^2.11.2",
-        "tslib": "^2.0.0",
-        "typescript": "^3.9.3",
-        "varint": "^5.0.0"
-    },
-    "devDependencies": {
-        "@rollup/plugin-buble": "^0.21.3",
-        "@rollup/plugin-commonjs": "^12.0.0",
-        "@rollup/plugin-image": "^2.0.5",
-        "@rollup/plugin-json": "^4.0.3",
-        "@rollup/plugin-node-resolve": "^8.0.0",
-        "minimist": "1.2.5"
-    }
+  "name": "doric-websocket",
+  "version": "0.1.0",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "doric build",
+    "dev": "cd example && doric dev",
+    "clean": "cd example && doric clean",
+    "android": "cd example && doric run android",
+    "ios": "cd example && doric run iOS"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "doric": ">=0.8.23",
+    "doric-cli": ">=0.8.23",
+    "reflect-metadata": "^0.1.13",
+    "rollup": "^2.56.2",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-image": "^2.1.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.4"
+  },
+  "optionalDependencies": {
+    "ios-deploy": "^1.11.4"
+  }
 }

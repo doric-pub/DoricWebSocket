@@ -1,1 +1,1 @@
-export default ['src/DoricWebSocket']
+export * from "./lib/WebSocket";
