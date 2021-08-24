@@ -1,7 +1,7 @@
 {
   "name": "doric-websocket",
   "version": "0.0.2",
-  "main": "build/index.js",
+  "main": "dist/bundle_doricwebsocket.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "doric build",
